@@ -6,9 +6,8 @@ Buffered~, CharArray~, Filter~, InputStream~ (File~), Piped~, String~ <br>
 Buffered~, CharArray~, Filter~, OutputStream~ (File~), Piped~, String~, Print~
 
 ## BufferedReader
-Used to read text from a character-input stream, buffering characters so as to provide for the efficient reading of characters, arrays, and lines. <br>
+[Documentation](https://docs.oracle.com/javase/8/docs/api/java/io/BufferedReader.html) Used to read text from a character-input stream, buffering characters so as to provide for the efficient reading of characters, arrays, and lines. <br>
 
-[Documentation](https://docs.oracle.com/javase/8/docs/api/java/io/BufferedReader.html) <br>
 
 ### Working of br
 **Buffer**
@@ -26,7 +25,10 @@ int charCode = reader.read();
 ```
 
 ## PrintWriter
+[Documentation](https://docs.oracle.com/javase/8/docs/api/java/io/PrintWriter.html)
 Used to write output data in a commonly readable form (text).
+
+[Online tutorial](https://www.youtube.com/watch?v=ZKkR1CX3XDU)
 
 ### Working of pw
 Unlike other writers, PrintWriter converts the primitive data (int, float, char, etc.)
