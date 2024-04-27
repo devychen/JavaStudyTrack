@@ -12,6 +12,7 @@ public class Copy {
                 bw.write(s + "\n");
             }
             br.close();
+            bw.close();
         } catch (Exception ex) {
             return;
         }
