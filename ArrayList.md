@@ -1,7 +1,6 @@
 # ArrayList
 [Documentation](https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html) <br>
 [Online Tutorial](https://www.youtube.com/watch?v=NbYgm0r7u6o)
-[Linked List Tutorial](https://www.youtube.com/watch?v=N6dOwBde7-M)
 - A class. Has the same purpose as an array but can change in length while program is running.
 - Resizable-array implementation of the `List` interface. 
 Implements all optional list operations, and permits all elements, 
