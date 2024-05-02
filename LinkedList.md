@@ -1,4 +1,4 @@
-[Return to contents](https://github.com/devychen/JavaStudyTrack/tree/main/Readme.md)
+[Return to contents](https://github.com/devychen/JavaStudyTrack/tree/main/README.md)
 
 # LinkedList
 

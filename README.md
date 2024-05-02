@@ -1,5 +1,12 @@
 # Java Notes
 
+### Shortcuts
+[ArrayList](https://github.com/devychen/JavaStudyTrack/blob/main/ArrayList.md) <br>
+
+[Generics](https://github.com/devychen/JavaStudyTrack/blob/main/Generics.md) <br>
+[LinkedList](https://github.com/devychen/JavaStudyTrack/blob/main/LinkedList.md) <br>
+
+
 ### IntelliJ tips <br>
 How to create projects [online tutorial](https://www.youtube.com/watch?v=c0efB_CKOYo)
 1. Blue folder icon is the source folder. <br> If it's not the intended one, right click "Mark Directory as" - "Sources Root"
@@ -7,7 +14,3 @@ How to create projects [online tutorial](https://www.youtube.com/watch?v=c0efB_C
 3. To create a test for class: <br> right click or option+enter on the class name within the code file.
 4. "src" is called _source code_
 
-### Shortcuts
-
-[Generics](https://github.com/devychen/JavaStudyTrack/blob/main/Generics.md)
-[LinkedList](https://github.com/devychen/JavaStudyTrack/blob/main/LinkedList.md)
