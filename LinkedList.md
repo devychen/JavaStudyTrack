@@ -6,7 +6,7 @@
 
 ### VS ArrayList
 - ArrayList are not so great at <ins>inserting/deleting elements</ins> esp when 
-elements are closer to the beginning of the array, as it involves shifting of elements.
+elements are closer to the beginning of the array, as it involves shifting of elements. <br>
 ![Image](ArrayList.png)
 - LL on the other hand has that advantage.
 - LL is made up of a long chain of nodes, starting from **head** to reach the tail with a value of `null`.
