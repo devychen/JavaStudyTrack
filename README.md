@@ -6,3 +6,8 @@ How to create projects [online tutorial](https://www.youtube.com/watch?v=c0efB_C
 2. Green icon is the test source folder.
 3. To create a test for class: <br> right click or option+enter on the class name within the code file.
 4. "src" is called _source code_
+
+### Shortcuts
+
+[Generics](https://github.com/devychen/JavaStudyTrack/blob/main/Generics.md)
+[LinkedList](https://github.com/devychen/JavaStudyTrack/blob/main/LinkedList.md)
