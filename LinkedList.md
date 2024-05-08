@@ -2,7 +2,7 @@
 
 # LinkedList
 
-[Learn Linked Lists in 13 minutes](https://www.youtube.com/watch?v=N6dOwBde7-M) (Also the images sources)
+A very good online tutorial: [Learn Linked Lists in 13 minutes](https://www.youtube.com/watch?v=N6dOwBde7-M) (Also the images sources)
 
 ### VS ArrayList
 - ArrayList are not so great at <ins>inserting/deleting elements</ins> esp when 
