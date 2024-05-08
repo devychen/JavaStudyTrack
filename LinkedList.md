@@ -13,15 +13,16 @@ elements are closer to the beginning of the array, as it involves shifting of el
 - A **singly LL**: there are single links to each node.
   ![Image](LinkedList.png)
 - For each node: 
-  - Contains two parts: **data** to be stored, **pointer** i.e. address to the next node.
+  - Contains two parts: **data** to be stored + **pointer** i.e. address to the next node.
   - No index, but each contains <ins>an address to where the next node is located</ins>.
   - Nodes are not continuous, could be anywhere within the computer memory.
 - Inserting
-  - Inserted node points to the next node inline using the previous node's pointer. 
-  - Previous node's pointer changes and points to the new inserted node.
+  - Inserted node("?") points to the next node inline ("D") using the previous node("C")'s pointer. 
+  - Previous node("C")'s pointer changes and use a new pointer pointing to the inserted node.
   ![Image](LLInserting.png)
 - Deleting
-  - Previous node's pointer changes to the deleted node's pointer and points to the next node inline.
+  - Previous node ("B")'s pointer changes to the deleted node ("C")'s pointer and points to the next node inline("D").
+  ![Image](LinkedList.png)
   ![Image](LLDeleting.png)
 - But LinkedList are <ins>bad at searching</ins> as there is no index.
   - Instead, we need to walk from the head to tail to locate it.
