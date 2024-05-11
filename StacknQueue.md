@@ -15,3 +15,6 @@
     name = myStack.pop(); // will delete "aventurine"
     ```
 - 其访问速度相对较快，因为它按照固定的地址进行访问；
+
+
+
