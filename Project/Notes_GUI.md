@@ -177,19 +177,20 @@ JList组件允许你显示一个对象列表，并且用户可以从列表中选
 
 #### To get a message box use (获取一个消息框)
 ```java
-JOptionPane.showMessageDialog(frame, "单词已经在列表中。");
+JOptionPane.showMessageDialog(frame, "Word is already in list");
 // 这里，frame是对话框的parent window。
 ```
 
 #### To get a confirmation dialog (获取一个确认对话框)
 ```java
-int result = JOptionPane.showConfirmDialog(frame, "确定要删除这个元素吗？");
+int result = JOptionPane.showConfirmDialog(frame, "Really delete element??");
 ```
 
 `showConfirmDialog()`方法会显示消息字符串和三个按钮：“是”、“否”和“取消”。当用户选择“是”时，方法返回YES_OPTION；当用户选择“否”时，返回NO_OPTION；当用户选择“取消”时，返回CANCEL_OPTION。
 
 #### To enter a single line of text(输入单行文本)
 ```java
+public static String showInputDialog(Component parentComponent, Object message, Object initialSelectionValue)
 String userInput = JOptionPane.showInputDialog(frame, "请输入单词：");
 ```
 `JOptionPane.showInputDialog()`方法会显示消息字符串和一个文本字段，用户可以在其中输入文本。
