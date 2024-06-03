@@ -132,8 +132,7 @@ public class SnowFlakeGUI extends JFrame {
         randomColor.addActionListener(myColorListener);
         fixedColor.addActionListener(myColorListener);
 
-
-        //TODO setup labels and text fields to enter r, g and b value for a fixed color
+        // TODO setup labels and text fields to enter r, g and b value for a fixed color
 
 
         // add components to the panel.

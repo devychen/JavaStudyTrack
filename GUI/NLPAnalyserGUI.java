@@ -52,20 +52,31 @@ public class NLPAnalyserGUI extends JFrame {
         topPanel.add(searchButton);
 
         // Left Bottom Panel
-        // Left Bottom Panel
-        JPanel leftBottomPanel = new JPanel(new GridLayout(8, 1));
-        leftBottomPanel.setBorder(BorderFactory.createTitledBorder("Java Searching for:"));
-        JLabel javaSearchLabel = new JLabel("Java Searching for:");
-        exactItemLabel = new JLabel("Exact Item");
-        caseSensitiveLabel = new JLabel("Case-sensitive");
-        leftBottomPanel.add(javaSearchLabel);
+        JPanel leftBottomPanel = new JPanel(new GridLayout(10, 1));
+        leftBottomPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); 
+        JLabel javaSearchLabel1 = new JLabel("Java", SwingConstants.CENTER);
+        javaSearchLabel1.setFont(new Font(javaSearchLabel1.getFont().getName(), Font.PLAIN, 25));
+        JLabel javaSearchLabel2 = new JLabel("Searching for:", SwingConstants.CENTER);
+        javaSearchLabel2.setFont(new Font(javaSearchLabel2.getFont().getName(), Font.PLAIN, 20));
+        exactItemLabel = new JLabel("Exact Item", SwingConstants.CENTER);
+        caseSensitiveLabel = new JLabel("Case-sensitive", SwingConstants.CENTER);
+        leftBottomPanel.add(javaSearchLabel1);
+        leftBottomPanel.add(javaSearchLabel2);
         leftBottomPanel.add(exactItemLabel);
         leftBottomPanel.add(caseSensitiveLabel);
-        leftBottomPanel.add(new JLabel(""));
-        leftBottomPanel.add(new JLabel("Displaying:"));
+        leftBottomPanel.add(new JLabel("", SwingConstants.CENTER));
+        JLabel displayingLabel = new JLabel("Displaying:", SwingConstants.CENTER);
+        displayingLabel.setFont(new Font(displayingLabel.getFont().getName(), Font.PLAIN, 20));
+        leftBottomPanel.add(displayingLabel);
+        
+        JLabel javaSearchLabel3 = new JLabel("Left Neighbour:", SwingConstants.CENTER);
         leftNeighboursSlider = new JSlider(0, 10, 2);
+        JLabel javaSearchLabel4 = new JLabel("Right Neighbour:", SwingConstants.CENTER);
         rightNeighboursSlider = new JSlider(0, 10, 2);
+        
+        leftBottomPanel.add(javaSearchLabel3);
         leftBottomPanel.add(leftNeighboursSlider);
+        leftBottomPanel.add(javaSearchLabel4);
         leftBottomPanel.add(rightNeighboursSlider);
 
         // Right Bottom Panel
