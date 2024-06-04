@@ -1,7 +1,5 @@
 /**
  * Commonly used list operations.
- * @author ZXY
- * Goal: how to read file and print content to screen, and how to save to file.
  */
 
 import java.util.*;
@@ -16,18 +14,16 @@ public class ListHelper {
      */
     public ListHelper() {
         encoding = "UTF-8";
-        // Example: ListHelper listHelper1 = new ListHelper();
     }
-
+    
     /**
      * Construct a FileFunctions object with the given encoding
      * @param anEncoding the file encoding
      */
     public ListHelper(String anEncoding) {
         encoding = anEncoding;
-        // Example: ListHelper listHelper2 = new ListHelper("ISO-8859-1");
     }
-
+    
     
     /**
      * Get a list of Strings where each String is one line in the file.
@@ -36,16 +32,16 @@ public class ListHelper {
      * @throws FileNotFoundException if there is a problem with the file
      */
     public List<String> readFileLineByLine(String fileName)
-        throws FileNotFoundException { // TODO
-        // first create an empty list to store
-        List<String> lines = new ArrayList<>();
-        // read the doc
-        Scanner scanner = new Scanner(new File(fileName));
-        while (scanner.hasNextLine()) {
-            lines.add(scanner.nextLine());
+        throws FileNotFoundException {
+        
+        List<String> data = new ArrayList<String>();
+        Scanner in = new Scanner(new File(fileName), encoding);
+        
+        while (in.hasNextLine()) {
+            data.add(in.nextLine());
         }
-        scanner.close();
-        return lines;
+        in.close();
+        return data;
     }
     
     /**
@@ -54,16 +50,11 @@ public class ListHelper {
      * @param withLineNum print line numbers if true
      */
     public <T> void printList(List<T> theList, boolean withLineNum){
-        // TODO
-        if (withLineNum){
-            for (int i = 0; i < theList.size(); i++) {
-                int lineNum = i + 1;
-                System.out.println(lineNum + ":" + theList.get(i));
-            }
-        } else {
-            for (T item: theList){  // = int i = 0 ..., 但是不能用i做任何事了
-                System.out.println(item);
-            }
+
+        for (int i=0; i < theList.size(); i++) {
+            if (withLineNum) 
+                System.out.print(i + ": ");
+            System.out.println(theList.get(i).toString());
         }
     }
 
@@ -75,10 +66,11 @@ public class ListHelper {
      */
     public <T> void saveListToFile(List<T> theList, String fileName) 
         throws FileNotFoundException, UnsupportedEncodingException {
+
         PrintWriter dest = new PrintWriter(new File(fileName), encoding);
-        // TODO
-        for(T item: theList){
-            dest.println(item);
+        
+        for (int i=0; i < theList.size(); i++) {
+            dest.println(theList.get(i).toString());
         }
         dest.close();
     }
@@ -92,10 +84,11 @@ public class ListHelper {
      */
     public void saveStringToFile(String theString, String fileName)
         throws FileNotFoundException, UnsupportedEncodingException {
+        
         PrintWriter dest = new PrintWriter(new File(fileName), encoding);
-        // TODO
-        dest.println(theString);
+        
+        dest.println(theString);        
         dest.close();
-
     }
 }
+

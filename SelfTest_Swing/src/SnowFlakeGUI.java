@@ -17,9 +17,10 @@ public class SnowFlakeGUI extends JFrame {
     private JColorChooser chooser;
     private JButton paintButton;
     private JTextField minBeamLength, maxBeamLength;
-    private JTextField redValue, greenValue, blueValue;
     private JComboBox numFlakes;
     private JRadioButton randomColor, fixedColor;
+    private JTextField redValue, greenValue, blueValue;
+    JLabel redLabel, greenLabel, blueLabel;
 
     /**
      * Default constructor.
@@ -131,22 +132,22 @@ public class SnowFlakeGUI extends JFrame {
         fixedColor.addActionListener(myColorListener);
 
         // TODO setup labels and text fields to enter r, g and b value for a fixed color
-        JLabel redLabel = new JLabel("Red");
+        redLabel = new JLabel("Red");
         redValue = new JTextField(0);
         redValue.setPreferredSize(textFieldDim);
-        redValue.setText("200");
+        redValue.setText("0");
         redValue.setToolTipText("Enter Integers Between 0 and 255!");
 
-        JLabel greenLabel = new JLabel("Green");
+        greenLabel = new JLabel("Green");
         greenValue = new JTextField(0);
         greenValue.setPreferredSize(textFieldDim);
-        greenValue.setText("200");
+        greenValue.setText("0");
         greenValue.setToolTipText("Enter Integers Between 0 and 255!");
 
-        JLabel blueLabel = new JLabel("Blue");
+        blueLabel = new JLabel("Blue");
         blueValue = new JTextField(0);
         blueValue.setPreferredSize(textFieldDim);
-        blueValue.setText("200");
+        blueValue.setText("0");
         blueValue.setToolTipText("Enter Integers Between 0 and 255!");
 
         // add components to the panel.
@@ -261,18 +262,46 @@ public class SnowFlakeGUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             //TODO implement this method
+            try {
+                // set parameters
+                int minBeam = Integer.parseInt(minBeamLength.getText()); // using `Integer.parseInt`: from string-getText() to int
+                int maxBeam = Integer.parseInt(maxBeamLength.getText());
 
-            // set parameters
-            int minBeam = Integer.parseInt(minBeamLength.getText()); // using `Integer.parseInt`: from string-getText() to int
-            int maxBeam = Integer.parseInt(maxBeamLength.getText());
-            int flakes = Integer.parseInt(numFlakes.getSelectedItem().toString());
+                // show dialog when values do not match
+                if (maxBeam < minBeam) {
+                    JOptionPane.showMessageDialog(getContentPane(), "Max beam length must be greater than min beam length!");
+                    return;
+                }
+                // check if random color is wanted
+                if (randomColor.isSelected()) {
+                    snowFlakeCanvas.setFlakeColor(null);
+                } // or fixed color
+                else {
+                    int r = Integer.parseInt(redValue.getText());
+                    int g = Integer.parseInt(greenValue.getText());
+                    int b = Integer.parseInt(blueValue.getText());
 
-            // pass to SnowFlakeCanvas
-            snowFlakeCanvas.setMinBeamLen(minBeam);
-            snowFlakeCanvas.setMaxBeamLen(maxBeam);
-            snowFlakeCanvas.setNumFlakes(flakes);
+                    snowFlakeCanvas.setFlakeColor(new Color(r, g, b));
+                }
+                // get requested number of flakes
+                int flakes = (Integer) numFlakes.getSelectedItem();
+                // get requested background color from color chooser
+                Color backGroundColor = chooser.getColor();
 
-            snowFlakeCanvas.repaint();
+                // pass to SnowFlakeCanvas, set canvas manually
+                snowFlakeCanvas.setBackground(backGroundColor);
+                snowFlakeCanvas.setMinBeamLen(minBeam);
+                snowFlakeCanvas.setMaxBeamLen(maxBeam);
+                snowFlakeCanvas.setNumFlakes(flakes);
+
+                snowFlakeCanvas.repaint();
+            } // thrown e when text field input cannot be parsed as an integer
+            catch (NumberFormatException e1) {
+                JOptionPane.showMessageDialog(getContentPane(), "Beam lengh and color values must be integers!");
+            } // when rgb value out of range
+            catch (IllegalArgumentException e2) {
+                JOptionPane.showMessageDialog(getContentPane(), "RGB value must be 0~255");
+            }
         }
     }
 
@@ -284,22 +313,26 @@ public class SnowFlakeGUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             //TODO implement this method
-            Color color = chooser.getColor();
-            snowFlakeCanvas.setFlakeColor(color);
+            if (randomColor.isSelected()) {
 
-            /*
-            if (e.getSource() == fixedColor) {
-                int r = Integer.parseInt(redValue.getText());
-                int g = Integer.parseInt(greenValue.getText());
-                int b = Integer.parseInt(blueValue.getText());
-                Color fixedColor = new Color(r, g, b);
-                snowFlakeCanvas.setFlakeColor(fixedColor);
-            } else if (e.getSource() == randomColor) {
-                snowFlakeCanvas.setFlakeColor(null);
+                // disable all components for rgb value input
+                redLabel.setEnabled(false);
+                greenLabel.setEnabled(false);
+                blueLabel.setEnabled(false);
+
+                redValue.setEnabled(false);
+                greenValue.setEnabled(false);
+                blueValue.setEnabled(false);
+            } // or enable them
+            else {
+                redLabel.setEnabled(true);
+                greenLabel.setEnabled(true);
+                blueLabel.setEnabled(true);
+
+                redValue.setEnabled(true);
+                greenValue.setEnabled(true);
+                blueValue.setEnabled(true);
             }
-            */
-
-            snowFlakeCanvas.repaint();
         }
     }
 
