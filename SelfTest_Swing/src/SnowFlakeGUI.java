@@ -1,4 +1,5 @@
 
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -7,7 +8,7 @@ import javax.swing.*;
  * SnowFlakeGUI. A GUI to display snow flakes. It offers multiple ways to set
  * the flakes' parameters such as size, number, background and flake color.
  *
- * @author veit
+ * @author Chen
  */
 @SuppressWarnings("serial")
 public class SnowFlakeGUI extends JFrame {
@@ -16,6 +17,7 @@ public class SnowFlakeGUI extends JFrame {
     private JColorChooser chooser;
     private JButton paintButton;
     private JTextField minBeamLength, maxBeamLength;
+    private JTextField redValue, greenValue, blueValue;
     private JComboBox numFlakes;
     private JRadioButton randomColor, fixedColor;
 
@@ -34,8 +36,7 @@ public class SnowFlakeGUI extends JFrame {
         BorderLayout mainLayout = new BorderLayout();
         getContentPane().setLayout(mainLayout);
 
-
-        // setup the 5 regions of the BorderLayout
+        // set up the 5 regions of the BorderLayout
         setUpNorth();
         setUpCenter();
         setUpSouth();
@@ -53,7 +54,6 @@ public class SnowFlakeGUI extends JFrame {
         westPanel.setLayout(westLayout);
 
         Dimension textFieldDim = new Dimension(50, 20);
-
 
         // set up JLabels and JTextFields (note: you can use html notation to format Strings)
         JLabel minBeamLabel = new JLabel("<html>Minimum<br />Beam Length:</html>");
@@ -78,11 +78,11 @@ public class SnowFlakeGUI extends JFrame {
         numFlakes.setSelectedIndex(9);
         numFlakes.setPreferredSize(textFieldDim);
         numFlakes.setMaximumSize(textFieldDim);
-        //numFlakes.setEditable(true);    // this allows you to pick a number freely beyond the given selection
+        numFlakes.setEditable(true);    // this allows you to pick a number freely beyond the given selection
 
 
-
-        // add the components to the panel. Use flexible (Glue) and fix (Strut) fillers.
+        // add the components to the panel.
+        // Use flexible (Glue) and fix (Strut) fillers.
         westPanel.add(Box.createVerticalGlue());
 
         westPanel.add(minBeamLabel);
@@ -90,13 +90,11 @@ public class SnowFlakeGUI extends JFrame {
         westPanel.add(minBeamLength);
 
         westPanel.add(Box.createVerticalStrut(15));
-
         westPanel.add(maxBeamLabel);
         westPanel.add(Box.createVerticalStrut(3));
         westPanel.add(maxBeamLength);
 
         westPanel.add(Box.createVerticalStrut(15));
-
         westPanel.add(numFlakesLabel);
         westPanel.add(Box.createVerticalStrut(3));
         westPanel.add(numFlakes);
@@ -124,8 +122,8 @@ public class SnowFlakeGUI extends JFrame {
         randomColor = new JRadioButton("Random Colors");
         fixedColor = new JRadioButton("Set fixed Color");
         colorGroup.add(randomColor);
-        colorGroup.add(fixedColor);
-        fixedColor.setSelected(true);
+        colorGroup.add(fixedColor); // 互斥，仅能选择一个
+        fixedColor.setSelected(true); // 默认选中
 
         // connect the buttons to ActionListener
         ColorListener myColorListener = new ColorListener();
@@ -133,7 +131,23 @@ public class SnowFlakeGUI extends JFrame {
         fixedColor.addActionListener(myColorListener);
 
         // TODO setup labels and text fields to enter r, g and b value for a fixed color
+        JLabel redLabel = new JLabel("Red");
+        redValue = new JTextField(0);
+        redValue.setPreferredSize(textFieldDim);
+        redValue.setText("200");
+        redValue.setToolTipText("Enter Integers Between 0 and 255!");
 
+        JLabel greenLabel = new JLabel("Green");
+        greenValue = new JTextField(0);
+        greenValue.setPreferredSize(textFieldDim);
+        greenValue.setText("200");
+        greenValue.setToolTipText("Enter Integers Between 0 and 255!");
+
+        JLabel blueLabel = new JLabel("Blue");
+        blueValue = new JTextField(0);
+        blueValue.setPreferredSize(textFieldDim);
+        blueValue.setText("200");
+        blueValue.setToolTipText("Enter Integers Between 0 and 255!");
 
         // add components to the panel.
         eastPanel.add(Box.createVerticalGlue());
@@ -141,11 +155,22 @@ public class SnowFlakeGUI extends JFrame {
         eastPanel.add(fixedColor);
         eastPanel.add(Box.createVerticalStrut(3));
 
+        // TODO add those labels and text fields to the panel
+        eastPanel.add(redLabel);
+        eastPanel.add(Box.createVerticalStrut(3));
+        eastPanel.add(redValue);
+        eastPanel.add(Box.createVerticalStrut(15));
 
-        //TODO add those labels and text fields to the panel
+        eastPanel.add(greenLabel);
+        eastPanel.add(Box.createVerticalStrut(3));
+        eastPanel.add(greenValue);
+        eastPanel.add(Box.createVerticalStrut(15));
 
+        eastPanel.add(blueLabel);
+        eastPanel.add(Box.createVerticalStrut(3));
+        eastPanel.add(blueValue);
+        eastPanel.add(Box.createVerticalStrut(15));
 
-        eastPanel.add(Box.createVerticalGlue());
 
         // finally add panel to the main layout
         getContentPane().add(eastPanel, BorderLayout.EAST);
@@ -236,6 +261,18 @@ public class SnowFlakeGUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             //TODO implement this method
+
+            // set parameters
+            int minBeam = Integer.parseInt(minBeamLength.getText()); // using `Integer.parseInt`: from string-getText() to int
+            int maxBeam = Integer.parseInt(maxBeamLength.getText());
+            int flakes = Integer.parseInt(numFlakes.getSelectedItem().toString());
+
+            // pass to SnowFlakeCanvas
+            snowFlakeCanvas.setMinBeamLen(minBeam);
+            snowFlakeCanvas.setMaxBeamLen(maxBeam);
+            snowFlakeCanvas.setNumFlakes(flakes);
+
+            snowFlakeCanvas.repaint();
         }
     }
 
@@ -247,6 +284,22 @@ public class SnowFlakeGUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             //TODO implement this method
+            Color color = chooser.getColor();
+            snowFlakeCanvas.setFlakeColor(color);
+
+            /*
+            if (e.getSource() == fixedColor) {
+                int r = Integer.parseInt(redValue.getText());
+                int g = Integer.parseInt(greenValue.getText());
+                int b = Integer.parseInt(blueValue.getText());
+                Color fixedColor = new Color(r, g, b);
+                snowFlakeCanvas.setFlakeColor(fixedColor);
+            } else if (e.getSource() == randomColor) {
+                snowFlakeCanvas.setFlakeColor(null);
+            }
+            */
+
+            snowFlakeCanvas.repaint();
         }
     }
 

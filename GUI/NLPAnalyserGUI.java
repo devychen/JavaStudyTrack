@@ -13,7 +13,7 @@ public class NLPAnalyserGUI extends JFrame {
     public NLPAnalyserGUI() {
         setTitle("NLP Analyser");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1000, 700);
+        setSize(1000, 600);
         setLocationRelativeTo(null);
 
         // Menu Bar
@@ -51,7 +51,7 @@ public class NLPAnalyserGUI extends JFrame {
         topPanel.add(inputTextField);
         topPanel.add(searchButton);
 
-        // Left Bottom Panel
+        // Left Section
         JPanel leftBottomPanel = new JPanel(new GridLayout(10, 1));
         leftBottomPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); 
         JLabel javaSearchLabel1 = new JLabel("Java", SwingConstants.CENTER);
@@ -79,7 +79,7 @@ public class NLPAnalyserGUI extends JFrame {
         leftBottomPanel.add(javaSearchLabel4);
         leftBottomPanel.add(rightNeighboursSlider);
 
-        // Right Bottom Panel
+        // Right Section
         JPanel rightBottomPanel = new JPanel(new BorderLayout());
         rightBottomPanel.setBorder(BorderFactory.createTitledBorder("Search Results"));
         resultTextArea = new JTextArea(10, 30);
