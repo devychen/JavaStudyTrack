@@ -102,7 +102,30 @@ public class CircularlyLinkedList<T> {
                 cur = cur.link;
             }
         }
+        /*
+        通过循环for (int i = 0; i < n; i++) {prev = cur; cur = cur.link}，
+        我们在每次迭代中将cur节点向后移动一个位置，同时将prev更新为当前的cur。
+        经过n次迭代后，cur指向原链表中的第n个位置，从而实现了向后移动n个节点的功能。
+        初始状态:
+        A -> B -> C -> D -> A
+        ^
+        cur
 
+        第一次迭代:
+        A -> B -> C -> D -> A
+        ^    ^
+        prev cur
+
+        第二次迭代:
+        A -> B -> C -> D -> A
+             ^    ^
+            prev  cur
+
+        第三次迭代:
+        A -> B -> C -> D -> A
+                  ^    ^
+                 prev  cur
+         */
 
     }
 
@@ -116,6 +139,7 @@ public class CircularlyLinkedList<T> {
     public void advance(T element) throws CircularlyLinkedListException {
 
         // TODO
+
 
     }
 
