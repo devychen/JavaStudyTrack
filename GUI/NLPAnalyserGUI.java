@@ -17,6 +17,7 @@ public class NLPAnalyserGUI extends JFrame {
         setLocationRelativeTo(null);
 
         // Menu Bar
+        // file: set up and add to layout
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
         JMenuItem fileMenuItem1 = new JMenuItem("Open");
@@ -24,14 +25,14 @@ public class NLPAnalyserGUI extends JFrame {
         fileMenu.add(fileMenuItem1);
         fileMenu.add(fileMenuItem2);
         menuBar.add(fileMenu);
-
+        // preference
         JMenu preferencesMenu = new JMenu("Preferences");
         JMenuItem preferencesMenuItem1 = new JMenuItem("General");
         JMenuItem preferencesMenuItem2 = new JMenuItem("Language");
         preferencesMenu.add(preferencesMenuItem1);
         preferencesMenu.add(preferencesMenuItem2);
         menuBar.add(preferencesMenu);
-
+        // theme
         JMenu themeMenu = new JMenu("Theme");
         JMenuItem themeMenuItem1 = new JMenuItem("Light");
         JMenuItem themeMenuItem2 = new JMenuItem("Dark");

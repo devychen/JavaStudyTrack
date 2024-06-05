@@ -1,26 +1,21 @@
 /**
  A class to store and manipulate generic circularly linked lists
-
- @author 阿夏
  */
 public class CircularlyLinkedList<T> {
-
+    
     private ListNode cur;
     private ListNode prev;
-    private int size;
-
+    private int size; 
+    
     /**
      *  Default constructor.  Creates an empty list
      */
     public CircularlyLinkedList() {
-        // TODO - ???
-        // 初始化一个空的循环链表
-        // this关键字用于引用当前对象的实例变量或方法, 明确表明我们正在初始化当前对象的实例变量，而不是局部变量
-        this.cur = null;
-        this.prev = null;
-        this.size = 0;
+        cur = null;
+        prev = null;
+        size = 0;
     }
-
+    
     /**
      * Get the size of the list.
      * @return the number of elements in this list.
@@ -28,97 +23,108 @@ public class CircularlyLinkedList<T> {
     public int size() {
         return size;
     }
-
+    
     /**
      *  Removes all of the elements from this list.
      */
     public void clear() {
-        // TODO - ???
-        this.cur = null;
-        this.prev = null;
-        this.size = 0;
+        cur = prev = null;
+        size = 0;
     }
-
+    
     /**
      *  Add an element after current. After this call, current
      *  is the element added.
      *  @param newData the data to add
      */
     public void add(T newData) {
-
-        // TODO - Done
-        ListNode newNode = new ListNode(newData);
-
+        
+        ListNode newNode = new ListNode(newData); 
+        
         if (cur == null) {  // add first element to the list
             cur = newNode;
-            cur.link = cur; // circular link
+            cur.link = cur;
             prev = cur;
         } else {           // add element after current to existing list
-            // now: n1 -> n2(cur) -> n3
-            // to: n1 -> n2 -> n3, & new -> n3
             newNode.link = cur.link;
-            // to: n1 -> n2 -> new -> n3
             cur.link = newNode;
-            prev = cur; // update prev to be the old cur
-            cur = newNode; // move cur to the new node
+            prev = cur;
+            cur = newNode;
         }
-
+        
         // increment size of the list
-        size ++;
+        size++;  
     }
-
+    
     /**
      *  Get the data at the current node in this list.
      *  @return data at current.
      *  @throws CircularlyLinkedListException if the list is empty
      */
     public T getCurrent() throws CircularlyLinkedListException {
-
-        // TODO - ???
+        
+        // Empty list - can't get
         if (cur == null) {
-            throw new CircularlyLinkedListException("Attempt to get current element from an empty list");
+            throw new CircularlyLinkedListException
+                ("Attempting to get element from an empty list.");
         }
         return cur.data;
     }
-
+    
     /**
-     *  Advance n positions in this list.  After this call,
-     *  current is n positions farther along the list. (i.e.向尾部移动n个节点)
+     *  Advance n positions in this list.  After this call, 
+     *  current is n positions farther along the list.
      *  @param n the number of positions to advance
      *  @throws CircularlyLinkedListException if the list is empty
      */
     public void advance(int n) throws CircularlyLinkedListException {
-
-        // TODO - ???
+        
+        // Empty list - can't advance
         if (cur == null) {
-            throw new CircularlyLinkedListException("Attempt to advance an empty list");
-        } else if (n < 0) {
-            throw new CircularlyLinkedListException("Attempt to advance a negative number");
-        } else if (n > size - 1) {
-            throw new CircularlyLinkedListException("Attempt to advance a number that is greater than the size of the list");
-        } else {
-            for (int i = 0; i < n; i++) {
-                prev = cur;
-                cur = cur.link;
-            }
+            throw new CircularlyLinkedListException
+                ("Attempting to advance in an empty list.");
         }
-
-
+        
+        // Advance n times,setting cur and prev each time
+        for (int i=0; i<n; i++) {
+            prev = cur;
+            cur = cur.link;
+        }
     }
-
+    
     /**
      *  Advance to element in this list, testing for equality
-     *  using the `equals` method.  After this call, the node
+     *  using the equals method.  After this call, the node
      *  containing element is current.
      *  @param element the element to advance to
      *  @throws CircularlyLinkedListException if the element is not in the list.
      */
     public void advance(T element) throws CircularlyLinkedListException {
-
-        // TODO
-
+        ListNode position = cur;
+        ListNode beforePos = prev;
+        
+        // Empty list - can't advance
+        if (cur == null) {
+            throw new CircularlyLinkedListException
+                ("Attempting to advance in an empty list.");
+        }
+        
+        // Find the element and set cur and prev accordingly
+        for (int i=0; i<size; i++) {
+            if (position.data.equals(element)) {
+                cur = position;
+                prev = beforePos;
+                return;
+            }
+            beforePos = position;
+            position = position.link;
+        }
+        
+        // If we get here, the element wasn't found
+        throw new CircularlyLinkedListException
+            (element + " not in the list.");
     }
-
+    
     /**
      *  Remove the current node in this list and return the element
      *  removed.  After this call, current is the element after the
@@ -127,35 +133,55 @@ public class CircularlyLinkedList<T> {
      *  @throws CircularlyLinkedListException if the list is empty
      */
     public T remove() throws CircularlyLinkedListException {
-
-        // TODO
-
-        // this is a stub - so that we can compile during the test phase
-        return null;
+        
+        T rval = null;
+        
+        // Empty list - nothing to delete
+        if (cur == null) {
+            throw new CircularlyLinkedListException
+                ("Attempting to remove from an empty list.");
+        }
+        
+        if (cur.link == cur) {
+            // Only 1 element in this list
+            rval = cur.data;
+            cur = null;
+            prev = null;
+        } else {
+            // More than 1 element in this list
+            rval = cur.data;
+            cur = cur.link;
+            prev.link = cur;
+        }
+        
+        // Decrement size
+        size--;
+        
+        return rval;
     }
-
+    
     /**
      *  Get a string representation of this list, starting at
      *  the current element.
      *  @return a string representation of this list.
      */
     public String toString() {
-
+        
         String rval = "";
         ListNode position = cur;
-
-        for (int i = 0; i < size; i++) {
+        
+        for (int i=0; i<size; i++) {
             rval += position.data + " ";
             position = position.link;
         }
-
+        
         return rval;
     }
-
+    
     private class ListNode {
         private T data;
         private ListNode link;
-
+        
         public ListNode() {
             data = null;
             link = null;

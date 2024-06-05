@@ -1,12 +1,10 @@
 /**
- A class to simulate the Josephus problem with a list
- of names read from an input file.  Play the game by choosing
- a player to start the counting and the winner will be printed.
-
- @author 阿夏
- */
+   A class to simulate the Josephus problem with a list
+   of names read from an input file.  Play the game by choosing
+   a player to start the counting and the winner will be printed.
+*/
 import java.util.*;
-
+import java.io.*;
 public class Josephus {
 
     private int countBy;
@@ -18,12 +16,12 @@ public class Josephus {
         allNames = new ArrayList<String>();
         countBy = 7;
     }
-
+    
     /**
      * Set up the linked list with the given names.
      */
     public void setNames(ArrayList<String> someNames) {
-
+        
         // store someNames in variable allNames so we can load them into the
         // circularly linked list before playing
         allNames.clear();
@@ -31,9 +29,9 @@ public class Josephus {
             allNames.add(s);
         }
     }
-
+    
     private void loadNames() {
-
+        
         // load allNames into the circular list
         // circNames will be destroyed when the game is played
         circNames.clear();
@@ -43,19 +41,25 @@ public class Josephus {
     }
 
     /**
-     Play the game, starting the counting with starter.
-     @param starter the player to start the counting
-     @return the winner, or null if starter is not on the list
-     */
+       Play the game, starting the counting with starter.
+       @param starter the player to start the counting
+       @return the winner, or null if starter is not on the list
+    */ 
     public String play(String starter) {
 
-        //try {
+        try {
+            loadNames();
+            circNames.advance(starter);
 
-        /****************  To Do  *************/
-
-        //}
-        //catch (CircularlyLinkedListException e) {
-        return null;
-        //}
+            // Determine and return the winner
+            while (circNames.size() > 1) {
+                circNames.advance(countBy-1);
+                circNames.remove();
+            }
+            return circNames.getCurrent();
+        }
+        catch (CircularlyLinkedListException e) {
+            return null;
+        }
     }
 }
