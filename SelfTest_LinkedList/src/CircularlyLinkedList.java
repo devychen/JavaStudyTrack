@@ -98,8 +98,8 @@ public class CircularlyLinkedList<T> {
             throw new CircularlyLinkedListException("Attempt to advance a number that is greater than the size of the list");
         } else {
             for (int i = 0; i < n; i++) {
-                prev = cur;
-                cur = cur.link;
+                prev = cur; // 将当前节点`cur`赋值给`prev`
+                cur = cur.link; // `将当前节点的链接（即下一个节点）赋值给`cur`，从而`cur`指向下一个节点`
             }
         }
         /*
@@ -130,32 +130,52 @@ public class CircularlyLinkedList<T> {
     }
 
     /**
-     *  Advance to element in this list, testing for equality
-     *  using the `equals` method.  After this call, the node
-     *  containing element is current.
+     *  Advance to element in this list, testing for equality using the `equals` method.
+     *  After this call, the node containing element is current.
      *  @param element the element to advance to
      *  @throws CircularlyLinkedListException if the element is not in the list.
      */
     public void advance(T element) throws CircularlyLinkedListException {
 
         // TODO
+        if (cur == null) {
+            throw new CircularlyLinkedListException("Attempt to advance an empty list");
+        }
+        ListNode start = cur; // WHY
+        do {
+            if (cur.data.equals(element)){
+                return; // WHY
+            }
+            prev = cur;
+            cur = cur.link;
+        } while (cur != start); // WHY 除了do-while还可以用别的吗
 
-
+        throw new CircularlyLinkedListException("Element not found");
     }
 
     /**
-     *  Remove the current node in this list and return the element
-     *  removed.  After this call, current is the element after the
-     *  removed element.
+     *  Remove the current node in this list and return the element removed.
+     *  After this call, current is the element after the removed element.
      *  @return the deleted element
      *  @throws CircularlyLinkedListException if the list is empty
      */
     public T remove() throws CircularlyLinkedListException {
 
         // TODO
-
-        // this is a stub - so that we can compile during the test phase
-        return null;
+        // Examine empty list
+        if (cur == null){
+            throw new CircularlyLinkedListException("Attempt to advance an empty list");
+        }
+        T data = cur.data; // why - 将当前节点的数据存储在一个临时变量`data`中
+        // examine one-node linkedlist
+        if (cur.link == cur){
+            cur = prev = null;
+        } else {
+            prev.link = cur.link;
+            cur = cur.link;
+        }
+        size --; // WHY - 更新链表大小，无论是否empty list都需要
+        return data;
     }
 
     /**
