@@ -36,3 +36,9 @@ for (String s : someNames) { // WHY - 读取someNames中的每一个元素并且
             allNames.add(s);
         }
 ```
+- ArrayList method
+```java
+ArrayList arrayList = new ArrayList<>();
+arrayList.add();
+arrayList.addAll();
+```
