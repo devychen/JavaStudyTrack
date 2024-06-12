@@ -1,6 +1,7 @@
 /**
- * A program to find a word ladder between 2 words, where each word in the
- * ladder is a word found in a dictionary.
+ * A program to find a word ladder between 2 words,
+ * where each word in the ladder is
+ * a word found in a dictionary.
  *
  * Reads a file with words and their neighbors into Word objects and
  * creates an ArrayList<Word> dictionary.
