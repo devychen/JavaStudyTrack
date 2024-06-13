@@ -15,8 +15,10 @@ How to create projects [online tutorial](https://www.youtube.com/watch?v=c0efB_C
 4. "src" is called _source code_
 
 ### Some tips
-- `i`在每次迭代后都会自动增加1（这是`for`循环的默认行为）
-- `public void`方法用于执行操作而不返回任何值，而非 void 方法用于执行操作并返回一个值供调用者使用。
+#### `i`
+在每次迭代后都会自动增加1（这是`for`循环的默认行为）
+#### `public void`
+方法用于执行操作而不返回任何值，而非 void 方法用于执行操作并返回一个值供调用者使用。
 ```java
 // example
 public void printMessage(String message) {
@@ -27,8 +29,8 @@ public int add(int a, int b) {
     return a + b;
 }
 ```
-- `Class` vs `Type`
-- `String s: someNames`:
+#### `Class` vs `Type`
+#### `String s: someNames`
 ```java
 for (String s : someNames) { // WHY - 读取someNames中的每一个元素并且赋予s。Equals to:
                             // for (int i = 0; i < someNames.size(); i++) {
@@ -36,18 +38,20 @@ for (String s : someNames) { // WHY - 读取someNames中的每一个元素并且
             allNames.add(s);
         }
 ```
-- ArrayList method
+#### ArrayList method
 ```java
 ArrayList arrayList = new ArrayList<>();
 arrayList.add();
 arrayList.addAll();
 ```
-- Java8后新加的feature:
-    - lambda expression
-    - functional interface x6
-    - improved APIs (我们讲了Streams)
-    - **help hand - [the G2G online tutorial](https://www.geeksforgeeks.org/java-8-features/?ref=lbp), and [another]((https://stackify.com/streams-guide-java-8/))*
-- Lambda Expression <br>
+#### Java8 New Feature
+ *help hand: <br> 
+ [the G2G online tutorial](https://www.geeksforgeeks.org/java-8-features/?ref=lbp), and [another]((https://stackify.com/streams-guide-java-8/)), and one [recommended](https://jenkov.com/tutorials/java-functional-programming/streams.html) by lecturer*
+1. lambda expression
+2. functional interface x6
+3. improved APIs (我们讲了Streams)
+
+**Lambda Expression** <br>
 > A lambda expression is a short block of code which <ins>takes in parameters and returns a value</ins>. Lambda expressions are similar to methods, but they <ins>do not need a name</ins> and they can <ins>be implemented right in the body of a method</ins>.
 ```java
 MyFunction doubleValue = new MyFunction() {
