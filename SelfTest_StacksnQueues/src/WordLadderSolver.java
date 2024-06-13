@@ -86,14 +86,14 @@ public class WordLadderSolver {
         // if from and to are not both in the dictionary return null
         // no ladder is possible
 
-        /**********    To Do    **********/
+        // TODO
 
         /*
          * Initialize the queue of stacks. Each stack contains <from> on the
          * bottom and one of from's neighbor words on top.
          */
 
-        /**********    To Do    **********/
+        // TODO
 
 
         /*
@@ -105,21 +105,21 @@ public class WordLadderSolver {
         while (!queue.isEmpty() && !done) {
 
             // remove a stack from the queue
-            /**********    To Do    **********/
+            // TODO
 
             // peek at the top word
-            /**********    To Do    **********/
+            // TODO
 
 
             // find the top Word in the dictionary (use binary search)
-            /**********    To Do    **********/
+            // TODO
 
             /*
              * Create stacks for top word's neighbors and add them to the queue,
              * but first make sure that the neighbor is not already on the stack.
              * We are done if the neighbor is the ending word in the ladder
              */
-            /**********    To Do    **********/
+            // TODO
 
         }
         return solution;

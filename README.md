@@ -42,3 +42,32 @@ ArrayList arrayList = new ArrayList<>();
 arrayList.add();
 arrayList.addAll();
 ```
+- Java8后新加的feature:
+    - lambda expression
+    - functional interface x6
+    - improved APIs (我们讲了Streams)
+    - **help hand - [the G2G online tutorial](https://www.geeksforgeeks.org/java-8-features/?ref=lbp), and [another]((https://stackify.com/streams-guide-java-8/))*
+- Lambda Expression <br>
+> A lambda expression is a short block of code which <ins>takes in parameters and returns a value</ins>. Lambda expressions are similar to methods, but they <ins>do not need a name</ins> and they can <ins>be implemented right in the body of a method</ins>.
+```java
+MyFunction doubleValue = new MyFunction() {
+    @Override
+    public int apply(int x) {
+        return x * 2;
+    }
+};
+// 这个匿名类的写法非常冗长。通过lambda表达式，我们可以简化为：
+MyFunction doubleValue = (x) -> x * 2;
+
+// complicated example
+// 如果包含变量、赋值或语句（如if或for），需要return value
+MyFunction complexOperation = (x) -> {
+    int result;
+    if (x % 2 == 0) {
+        result = x / 2;
+    } else {
+        result = x * 3 + 1;
+    }
+    return result;
+};
+```
