@@ -17,5 +17,5 @@ An array is a fixed-length data structure. <br>
 ArrayList is a variable-length data structure. <br>
 You cannot use generic for Array. <br>
 Two drawbacks:
-1. You cannot store primitives in ArrayList, it can only contain Objects. While Array can contain both. <br>
+1. You cannot store primitives types in ArrayList, it can only contain `Objects` - use wrapper classes instead. While Array can contain both. <br>
 2. Using an instance of `ArrayList` is less efficient than using an array.
