@@ -83,7 +83,7 @@
 - Defining own pkg: 
     - folder name (directory) is the pkg name; 
     - each class in the pkg has `package Package_Name` as the first statement.
-    - For example: our package will be named lib.helpers, so we will store the package in the directory lib/helpers
+    - For example: our package will be named _lib.helpers_, so we will store the package in the directory _lib/helpers_
 
 
 
