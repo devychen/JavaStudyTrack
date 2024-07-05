@@ -1,4 +1,4 @@
-//********************************************************************
+package Example_StacknQuenes;//********************************************************************
 //  Customer.java       Authors: Lewis/Chase
 //
 //  Represents a waiting customer.

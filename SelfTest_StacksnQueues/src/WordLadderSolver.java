@@ -6,6 +6,7 @@
  * Reads a file with words and their neighbors into Word objects and
  * creates an ArrayList<Word> dictionary.
  */
+
 import java.util.*;
 import java.io.*;
 
