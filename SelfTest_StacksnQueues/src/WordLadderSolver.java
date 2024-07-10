@@ -88,6 +88,9 @@ public class WordLadderSolver {
         // no ladder is possible
 
         // TODO
+        if (fromIndex < 0 || toIndex < 0) {
+            return null;
+        }
 
         /*
          * Initialize the queue of stacks. Each stack contains <from> on the
@@ -95,7 +98,9 @@ public class WordLadderSolver {
          */
 
         // TODO
-
+        aStack = new Stack<String>();
+        aStack.push(from);
+        queue.offer(aStack);
 
         /*
          * Loop until we are done (a ladder was found) or
@@ -106,14 +111,17 @@ public class WordLadderSolver {
         while (!queue.isEmpty() && !done) {
 
             // remove a stack from the queue
-            // TODO
+            aStack = queue.poll(); // TODO
 
             // peek at the top word
-            // TODO
+            topWord = aStack.peek(); // TODO
 
 
             // find the top Word in the dictionary (use binary search)
             // TODO
+            topIndex = Collections.binarySearch(dict, new Word(topWord));
+            if (topIndex < 0) continue;
+            aWord = dict.get(topIndex);
 
             /*
              * Create stacks for top word's neighbors and add them to the queue,
@@ -121,6 +129,19 @@ public class WordLadderSolver {
              * We are done if the neighbor is the ending word in the ladder
              */
             // TODO
+            for (String neighbor : aWord.neighbors) {
+                if (!aStack.contains(neighbor)) {
+                    stackCopy = (Stack<String>) aStack.clone();
+                    stackCopy.push(neighbor);
+                    if (neighbor.equals(to)) {
+                        solution = stackCopy;
+                        done = true;
+                        break;
+                    } else {
+                        queue.offer(stackCopy);
+                    }
+                }
+            }
 
         }
         return solution;

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<seasons>
+  <spring>
+    <month>March</month>
+    <month>April</month>
+    <month>May</month>
+  </spring>
+  <summer>
+    <month>June</month>
+    <month>July</month>
+    <month>August</month>
+  </summer>
+  <autumn>
+    <month>September</month>
+    <month>October</month>
+    <month>November</month>
+  </autumn>
+  <winter>
+    <month>December</month>
+    <month>January</month>
+    <month>February</month>
+  </winter>
+</seasons>
