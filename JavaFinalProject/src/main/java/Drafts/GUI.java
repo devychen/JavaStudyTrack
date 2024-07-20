@@ -125,7 +125,27 @@ public class GUI extends JFrame {
     }
 
     /****** THE LISTENERS ******/
-private class SubmitButtonListener implements ActionListener {
+    public class searchButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == searchButton) {
+                try {
+                    String urlText = url.getText();
+                    String wikiUrl = "https://en.wikipedia.org/wiki/";
+                    if (urlText.startsWith(wikiUrl)) {
+                        cb.setUrl(urlText);
+                        JOptionPane.showMessageDialog(getContentPane(), "URL set successfully.");
+                    } else {
+                        JOptionPane.showMessageDialog(getContentPane(), "Please enter a valid URL for the English Wikipedia page!");
+                    }
+                } catch (IllegalArgumentException e1) {
+                    JOptionPane.showMessageDialog(getContentPane(), "Invalid URL!");
+                }
+            }
+        }
+    }
+
+    private class SubmitButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == submitButton) {
@@ -150,26 +170,6 @@ private class SubmitButtonListener implements ActionListener {
         }
     }
 
-
-    public class searchButtonListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == searchButton) {
-                try {
-                    String urlText = url.getText();
-                    String wikiUrl = "https://en.wikipedia.org/wiki/";
-                    if (urlText.startsWith(wikiUrl)) {
-                        cb.setUrl(urlText);
-                        JOptionPane.showMessageDialog(getContentPane(), "URL set successfully.");
-                    } else {
-                        JOptionPane.showMessageDialog(getContentPane(), "Please enter a valid URL for the English Wikipedia page!");
-                    }
-                } catch (IllegalArgumentException e1) {
-                    JOptionPane.showMessageDialog(getContentPane(), "Invalid URL!");
-                }
-            }
-        }
-    }
 
     private class MyWindowListener extends WindowAdapter {
         @Override
